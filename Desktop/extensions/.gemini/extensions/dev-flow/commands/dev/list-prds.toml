@@ -1,0 +1,77 @@
+prompt = """
+# List Available PRDs
+
+## Goal
+To display all available Product Requirements Documents (PRDs) in the `/tasks` directory, showing their status and helping users select which one to work with.
+
+## Process
+1. **Verify Directory Setup:** Check that the `/tasks` directory exists. If it doesn't, create it automatically.
+2. **Scan for PRDs:** Look for files matching the pattern `[n]-prd-[feature-name].md` in the `/tasks` directory.
+3. **Check for Task Lists:** For each PRD, check if a corresponding task list exists (`tasks-[prd-file-name].md`).
+4. **Display Results:** Present a formatted list showing:
+   - PRD filename and number
+   - Feature name (extracted from filename)
+   - Status of corresponding task list (exists/missing)
+   - Brief summary if available (first few lines of PRD)
+
+## Output Format
+
+If PRDs are found:
+```
+# Available Product Requirements Documents
+
+## 0001 - User Authentication System
+**Status:** Task list available ✅
+**Summary:** A comprehensive authentication system with login, registration, and password management features.
+**Files:** 
+- PRD: `0001-prd-user-authentication-system.md`
+- Tasks: `tasks-0001-prd-user-authentication-system.md`
+
+## 0002 - Dashboard Analytics
+**Status:** No task list yet ❌
+**Summary:** Real-time analytics dashboard for monitoring application performance and user engagement.
+**Files:** 
+- PRD: `0002-prd-dashboard-analytics.md`
+- Tasks: Not created yet
+
+---
+
+**Total PRDs:** 2 | **With Task Lists:** 1 | **Missing Task Lists:** 1
+```
+
+If no PRDs are found:
+```
+# No Product Requirements Documents Found
+
+No PRDs found in the `/tasks` directory.
+
+**To get started:**
+1. Create a new PRD using: `/dev:create-prd "your feature description"`
+2. PRDs will be automatically saved with format: `[n]-prd-[feature-name].md`
+
+**Example:**
+```bash
+/dev:create-prd "Create user authentication system"
+```
+```
+
+## Error Handling
+- If the `/tasks` directory cannot be accessed, provide clear instructions for manual creation
+- If there are permission issues, suggest appropriate solutions
+- If file names don't follow the expected pattern, list them anyway with a warning
+- Always verify the directory contents before concluding
+
+## Interactive Features
+- After displaying the list, ask if the user wants to:
+  - Create a task list for a specific PRD
+  - Process an existing task list
+  - Create a new PRD
+  - Clean up old files
+
+## File Validation
+- Ensure PRD filenames follow the pattern `[n]-prd-[feature-name].md`
+- Validate that PRD files contain expected structure ( Goals, User Stories, etc.)
+- Check for duplicate or conflicting filenames
+- Verify file permissions and readability
+
+"""

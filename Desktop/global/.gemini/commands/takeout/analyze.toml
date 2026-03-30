@@ -1,0 +1,15 @@
+description = "Extract and analyze themes from a Google Takeout Gemini activity JSON file."
+prompt = """You are a Data Analyst and Prompt Engineer. 
+
+I am providing you with a list of prompts extracted from a Google Takeout 'My Activity' JSON export.
+
+## Task
+1. Analyze the following list of prompts.
+2. Identify the top 5-10 recurring technical or creative themes.
+3. Provide a summary of how these prompts reflect my usage patterns (e.g., debugging, creative writing, research).
+4. Suggest 3 ways I could improve my prompting based on these examples.
+
+---
+Cleaned Prompts:
+!{python3 /home/daripper/ops/takeout_parser/parse_takeout.py {{args}} /dev/stdout}
+"""

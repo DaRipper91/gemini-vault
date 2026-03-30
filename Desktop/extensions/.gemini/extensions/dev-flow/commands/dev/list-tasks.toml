@@ -1,0 +1,114 @@
+prompt = """
+# List Task Lists and Progress
+
+## Goal
+To display all available task lists in the `/tasks` directory, showing completion progress and helping users understand their current development status.
+
+## Process
+1. **Verify Directory Setup:** Check that the `/tasks` directory exists. If it doesn't, create it automatically.
+2. **Scan for Task Lists:** Look for files matching the pattern `tasks-[n]-prd-[feature-name].md` in the `/tasks` directory.
+3. **Analyze Progress:** For each task list, parse the checkbox status to determine:
+   - Total number of parent tasks
+   - Total number of sub-tasks
+   - Number of completed sub-tasks
+   - Number of completed parent tasks
+   - Overall completion percentage
+4. **Display Results:** Present a formatted status report showing progress for each active feature.
+
+## Output Format
+
+If task lists are found:
+```
+# Development Task Status
+
+## 0001 - User Authentication System
+**Progress:** 60% Complete (6/10 sub-tasks done)
+**Status:** In Progress 🔄
+**Parent Tasks:** 2/4 completed
+**Last Modified:** October 10, 2025
+
+### Completed Tasks ✅
+- [x] 1.0 Set up authentication infrastructure
+  - [x] 1.1 Install and configure authentication library
+  - [x] 1.2 Create user model and database schema
+  - [x] 1.3 Set up JWT token management
+
+- [x] 2.0 Implement user registration
+  - [x] 2.1 Create registration form component
+  - [x] 2.2 Add form validation and error handling
+
+### In Progress 🚧
+- [ ] 3.0 Implement user login
+  - [ ] 3.1 Create login form component
+  - [ ] 3.2 Add session management
+
+### Pending ⏳
+- [ ] 4.0 Add password reset functionality
+  - [ ] 4.1 Create forgot password flow
+  - [ ] 4.2 Implement email verification
+
+---
+
+## 0002 - Dashboard Analytics
+**Progress:** 0% Complete (0/8 sub-tasks done)
+**Status:** Not Started ⏸️
+**Parent Tasks:** 0/3 completed
+**Last Modified:** October 9, 2025
+
+---
+
+**Summary:** 2 active features | 6/18 sub-tasks complete | 33% overall progress
+```
+
+If no task lists are found:
+```
+# No Task Lists Found
+
+No task lists found in the `/tasks` directory.
+
+**To get started:**
+1. First create a PRD using: `/dev:create-prd "your feature description"`
+2. Then generate tasks: `/dev:generate-tasks "path-to-prd"`
+3. Finally work through tasks: `/dev:process-task-list "path-to-task-list"`
+
+**Example workflow:**
+```bash
+/dev:create-prd "Create user authentication system"
+/dev:generate-tasks "0001-prd-user-authentication-system"
+/dev:process-task-list "tasks-0001-prd-user-authentication-system"
+```
+```
+
+## Progress Calculation Logic
+- Parse checkbox format: `[ ]` for incomplete, `[x]` for completed
+- Calculate sub-task completion percentage
+- Parent task is considered complete only when ALL its sub-tasks are complete
+- Overall progress is total completed sub-tasks / total sub-tasks
+- Track last modification time from file metadata
+
+## Status Indicators
+- **Not Started** (0%): No sub-tasks completed
+- **In Progress** (1-99%): Some sub-tasks completed
+- **Completed** (100%): All sub-tasks completed
+- **Blocked**: If specific issues are identified in task comments
+
+## Error Handling
+- If the `/tasks` directory cannot be accessed, provide clear instructions
+- If task list files are malformed, show error details and suggest fixes
+- If checkbox parsing fails, display the file content for manual review
+- Always verify file contents before concluding
+
+## Interactive Features
+After displaying the status, offer to:
+- Continue working on a specific task list
+- Create a new task list for an existing PRD
+- Clean up completed or abandoned task lists
+- Generate a progress report for stakeholders
+
+## File Validation
+- Ensure task list filenames follow the pattern `tasks-[n]-prd-[feature-name].md`
+- Validate checkbox format and structure
+- Check for orphaned task lists (no corresponding PRD)
+- Verify file permissions and readability
+
+"""

@@ -1,0 +1,21 @@
+name = "create-skill"
+description = "Create a new skill"
+category = "skills"
+
+tags = ["skill", "creation"]
+optional = []
+required = ["user_input"]
+
+prompt = """
+Please create a new skill based on the user's input: `{{user_input}}`.
+Place the skill in the workspace directory .gemini/skills/<skill_name> .
+
+my-skill/
+├── SKILL.md       (Required) Instructions and metadata
+├── scripts/       (Optional) Executable scripts/tools
+├── references/    (Optional) Static documentation and examples
+└── assets/        (Optional) Templates and binary resources
+
+Search Results:
+!{grep -r {{user_input}} .}
+"""
