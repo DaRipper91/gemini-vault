@@ -1,0 +1,96 @@
+{
+    "_comment": "DOCUMENTATION ONLY. Canonical hook registration is in gemini-extension.json. This file exists for reference and direct settings.json integration during development.",
+    "hooks": {
+        "SessionStart": [
+            {
+                "matcher": "startup",
+                "hooks": [
+                    {
+                        "name": "omg-session-start",
+                        "type": "command",
+                        "command": "node ${extensionPath}/hooks/session-start.js",
+                        "timeout": 5000,
+                        "description": "Load Conductor state and project context on startup; concise output on resume"
+                    }
+                ]
+            }
+        ],
+        "BeforeAgent": [
+            {
+                "matcher": "*",
+                "hooks": [
+                    {
+                        "name": "omg-context-injection",
+                        "type": "command",
+                        "command": "node ${extensionPath}/hooks/before-agent.js",
+                        "timeout": 10000,
+                        "description": "Dynamic context injection based on task type"
+                    }
+                ]
+            }
+        ],
+        "BeforeTool": [
+            {
+                "matcher": "write_file|replace|run_shell_command|shell",
+                "hooks": [
+                    {
+                        "name": "omg-security-gate",
+                        "type": "command",
+                        "command": "node ${extensionPath}/hooks/before-tool.js",
+                        "timeout": 15000,
+                        "description": "User-custom command/path blocks and git checkpoints before file/shell operations"
+                    }
+                ]
+            }
+        ],
+        "AfterTool": [
+            {
+                "matcher": "write_file|replace",
+                "hooks": [
+                    {
+                        "name": "omg-auto-verify",
+                        "type": "command",
+                        "command": "node ${extensionPath}/hooks/after-tool.js",
+                        "timeout": 60000,
+                        "description": "Auto-verification (typecheck, lint) after code changes"
+                    }
+                ]
+            }
+        ],
+        "BeforeToolSelection": [
+            {
+                "matcher": "*",
+                "hooks": [
+                    {
+                        "name": "omg-tool-filter",
+                        "type": "command",
+                        "command": "node ${extensionPath}/hooks/tool-filter.js",
+                        "timeout": 5000,
+                        "description": "Dynamic tool filtering based on detected agent mode (researcher/architect/executor)"
+                    }
+                ]
+            }
+        ],
+        "AfterAgent": [
+            {
+                "matcher": "*",
+                "hooks": [
+                    {
+                        "name": "omg-phase-gate",
+                        "type": "command",
+                        "command": "node ${extensionPath}/hooks/phase-gate.js",
+                        "timeout": 10000,
+                        "description": "Advisory Conductor phase progress indicator"
+                    },
+                    {
+                        "name": "omg-ralph-retry",
+                        "type": "command",
+                        "command": "node ${extensionPath}/hooks/ralph-retry.js",
+                        "timeout": 5000,
+                        "description": "Persistence mode (Ralph) - automatic retry on failure with circuit breaker awareness"
+                    }
+                ]
+            }
+        ]
+    }
+}

@@ -1,0 +1,145 @@
+{
+  "version": "1.0.0",
+  "phaseGates": {
+    "enabled": true,
+    "strict": false,
+    "phases": [
+      "data-layer",
+      "backend",
+      "frontend",
+      "review"
+    ]
+  },
+  "autoVerification": {
+    "enabled": true,
+    "typecheck": true,
+    "lint": true,
+    "timeout": 30000
+  },
+  "security": {
+    "gitCheckpoints": true,
+    "blockedCommands": [
+      "rm -rf /",
+      "rm -rf .",
+      "sudo rm",
+      "chmod 777",
+      ":(){ :|:& };:",
+      "mkfs.",
+      "dd if=",
+      "> /dev/sd",
+      "format c:",
+      "format d:",
+      "rd /s /q c:\\",
+      "rmdir /s /q c:\\",
+      "del /f /s /q c:\\",
+      "del /f /q %systemroot%",
+      "reg delete hk",
+      "bcdedit",
+      "diskpart",
+      "shutdown /r",
+      "shutdown /s"
+    ],
+    "blockedPaths": [
+      "node_modules",
+      ".git",
+      "/etc",
+      "/usr",
+      "/bin",
+      "/sbin",
+      "/var",
+      "/root",
+      "C:\\Windows",
+      "C:\\Program Files",
+      "C:\\Program Files (x86)",
+      "%SystemRoot%",
+      "%ProgramFiles%"
+    ]
+  },
+  "toolFilter": {
+    "enabled": true,
+    "modes": {
+      "research": {
+        "allowed": [
+          "google_web_search",
+          "web_fetch",
+          "read_file",
+          "list_directory",
+          "glob",
+          "grep_search"
+        ]
+      },
+      "review": {
+        "allowed": [
+          "read_file",
+          "list_directory",
+          "glob",
+          "grep_search"
+        ]
+      },
+      "implement": {
+        "allowed": "*"
+      },
+      "quickfix": {
+        "allowed": "*"
+      },
+      "plan": {
+        "allowed": [
+          "read_file",
+          "list_directory",
+          "glob",
+          "grep_search",
+          "google_web_search",
+          "web_fetch"
+        ]
+      }
+    }
+  },
+  "ralph": {
+    "enabled": true,
+    "maxRetries": 5,
+    "stuckThreshold": 3,
+    "triggerPatterns": [
+      "I'm stuck",
+      "I cannot",
+      "I'm unable",
+      "not possible",
+      "failed to",
+      "can't figure out",
+      "doesn't work"
+    ],
+    "suggestedSkill": "ralph-mode"
+  },
+  "sessionPlanPath": null,
+  "contextInjection": {
+    "enabled": true,
+    "conductorState": true,
+    "gitHistory": {
+      "enabled": true,
+      "onKeywords": [
+        "fix",
+        "bug",
+        "error",
+        "issue",
+        "broken",
+        "crash"
+      ],
+      "commitCount": 5
+    },
+    "recentChanges": {
+      "enabled": true,
+      "onKeywords": [
+        "continue",
+        "resume",
+        "where were we",
+        "pick up",
+        "last time"
+      ],
+      "fileCount": 10
+    }
+  },
+  "debug": {
+    "enabled": false,
+    "logFile": null,
+    "verbose": false
+  }
+}

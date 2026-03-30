@@ -1,0 +1,39 @@
+# Claude Code
+.claude/logs/
+*.log
+
+# Node
+node_modules/
+npm-debug.log*
+*.tgz
+package-lock.json
+
+# Generated files (for testing)
+test-output/
+PRPROMPTS-temp/
+test/
+coverage/
+
+# Archive files (old versions)
+*_OLD.*
+*_IMPROVED.*
+*_BACKUP.*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temp files
+*.tmp
+.temp/
+
+# Personal configs
+.env
+.env.local
+.claude/settings.local.json

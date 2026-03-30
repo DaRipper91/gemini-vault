@@ -1,0 +1,78 @@
+prompt = """
+# Task List Management
+
+Guidelines for managing task lists in markdown files to track progress on completing a PRD: {{args}}
+
+## Initial Setup
+1. **Validate Task List File:** Check that the specified task list file exists and is readable
+2. **Verify Task List Format:** Ensure the file follows the expected task list structure with checkbox format
+3. **Check Current Progress:** Review which tasks are already completed and what's next
+4. **Identify Next Sub-task:** Determine the next uncompleted sub-task to work on
+
+## Task Implementation
+- **One sub-task at a time:** Do NOT start the next sub-task until you ask the user for permission and they say "yes" or "y"
+- **Completion protocol:**
+  1. When you finish a sub-task, immediately mark it as completed by changing `[ ]` to `[x]`.
+  2. If all subtasks underneath a parent task are now `[x]`, follow this sequence:
+     - **First**: Run the full test suite (`pytest`, `npm test`, `bin/rails test`, etc.)
+     - **Only if all tests pass**: Stage changes (`git add .`)
+     - **Clean up**: Remove any temporary files and temporary code before committing
+     - **Commit**: Use a descriptive commit message that:
+       - Uses conventional commit format (`feat:`, `fix:`, `refactor:`, etc.)
+       - Summarizes what was accomplished in the parent task
+       - Lists key changes and additions
+       - References the task number and PRD context
+       - **Formats the message as a single-line command using `-m` flags**, e.g.:
+         ```
+         git commit -m "feat: add payment validation logic" -m "- Validates card type and expiry" -m "- Adds unit tests for edge cases" -m "Related to T123 in PRD"
+         ```
+  3. Once all the subtasks are marked completed and changes have been committed, mark the parent task as completed.
+- Stop after each sub-task and wait for the user's go-ahead.
+
+## Task List Maintenance
+1. **Update the task list as you work:**
+   - Mark tasks and subtasks as completed (`[x]`) per the protocol above.
+   - Add new tasks as they emerge.
+2. **Maintain the "Relevant Files" section:**
+   - List every file created or modified.
+   - Give each file a one-line description of its purpose.
+
+## AI Instructions
+When working with task lists, you must:
+1. Regularly update the task list file after finishing any significant work.
+2. Follow the completion protocol:
+   - Mark each finished sub-task `[x]`.
+   - Mark the parent task `[x]` once all its subtasks are `[x]`.
+3. Add newly discovered tasks.
+4. Keep "Relevant Files" accurate and up to date.
+5. Before starting work, check which sub-task is next.
+6. After implementing a sub-task, update the file and then pause for user approval.
+
+## Error Handling
+- If the task list file cannot be found, list available task lists in `/tasks` directory
+- If the file format is invalid, explain the expected format and provide examples
+- If git operations fail, provide specific error messages and manual instructions
+- If test commands fail, help debug the issues and suggest fixes
+- Always save the task list file after any changes to prevent data loss
+
+## Progress Tracking
+- Always show current status: "Task X.Y: [description] (completed/remaining)"
+- After completing a sub-task, show updated progress summary
+- When a parent task is completed, announce the milestone
+- When all tasks are complete, provide a final summary and next steps
+
+## Test Framework Integration
+Automatically detect and use the appropriate test command:
+- JavaScript/TypeScript: `npm test` or `npx jest`
+- Python: `pytest` or `python -m pytest`
+- Ruby/Rails: `bin/rails test` or `rspec`
+- Go: `go test ./...`
+- Java: `mvn test` or `gradle test`
+- If no standard test setup is found, ask the user for the appropriate command
+
+## File Management
+- Always verify file writes were successful
+- Create backups before major changes if requested
+- Clean up temporary files and artifacts
+- Update the "Relevant Files" section with all new/modified files
+"""

@@ -1,0 +1,17 @@
+Dev Flow Gemini CLI Extension
+Copyright 2025 shrwnsan
+
+This product incorporates AI development workflow patterns developed as part of the
+ai-dev-tasks project by Ryan Carson, which is licensed under the Apache License,
+Version 2.0.
+
+Original Project: ai-dev-tasks
+Author: Ryan Carson
+License: Apache License, Version 2.0
+Repository: https://github.com/snarktank/ai-dev-tasks
+
+The ai-dev-tasks project is one of few notable ones pioneering structured approaches to human-AI collaboration
+in software development, including systematic AI agent orchestration patterns that
+have been adapted for use as a Gemini CLI extension.
+
+For full license terms, see the LICENSE file.

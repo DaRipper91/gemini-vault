@@ -1,0 +1,170 @@
+{
+  "name": "oh-my-gemini",
+  "version": "1.0.0",
+  "description": "Hook-enforced workflows for Gemini CLI. Install it, and your AI coding workflow instantly levels up.",
+  "author": "richardcb",
+  "repository": "https://github.com/richardcb/oh-my-gemini",
+  "license": "MIT",
+  "keywords": [
+    "gemini-cli",
+    "hooks",
+    "skills",
+    "policies",
+    "agentic-coding",
+    "docs-first",
+    "workflows",
+    "developer-tools"
+  ],
+  "engines": {
+    "gemini-cli": ">=0.31.0"
+  },
+  "commands": [
+    "commands/omg"
+  ],
+  "agents": [
+    ".gemini/agents"
+  ],
+  "skills": [
+    "skills"
+  ],
+  "policies": [
+    "policies"
+  ],
+  "hooks": {
+    "SessionStart": [
+      {
+        "name": "omg-session-start",
+        "type": "command",
+        "command": "node ${extensionPath}/hooks/session-start.js",
+        "timeout": 5000,
+        "description": "Load Conductor state and project context on startup; concise output on resume"
+      }
+    ],
+    "BeforeAgent": [
+      {
+        "name": "omg-context-injection",
+        "type": "command",
+        "command": "node ${extensionPath}/hooks/before-agent.js",
+        "timeout": 10000,
+        "description": "Dynamic context injection based on task type"
+      }
+    ],
+    "BeforeTool": [
+      {
+        "name": "omg-security-gate",
+        "type": "command",
+        "command": "node ${extensionPath}/hooks/before-tool.js",
+        "timeout": 15000,
+        "description": "User-custom command/path blocks and git checkpoints before file/shell operations",
+        "matcher": "write_file|replace|run_shell_command|shell"
+      }
+    ],
+    "AfterTool": [
+      {
+        "name": "omg-auto-verify",
+        "type": "command",
+        "command": "node ${extensionPath}/hooks/after-tool.js",
+        "timeout": 60000,
+        "description": "Auto-verification (typecheck, lint) after code changes",
+        "matcher": "write_file|replace"
+      }
+    ],
+    "BeforeToolSelection": [
+      {
+        "name": "omg-tool-filter",
+        "type": "command",
+        "command": "node ${extensionPath}/hooks/tool-filter.js",
+        "timeout": 5000,
+        "description": "Dynamic tool filtering based on detected agent mode (researcher/architect/executor)"
+      }
+    ],
+    "AfterAgent": [
+      {
+        "name": "omg-phase-gate",
+        "type": "command",
+        "command": "node ${extensionPath}/hooks/phase-gate.js",
+        "timeout": 10000,
+        "description": "Advisory Conductor phase progress indicator"
+      },
+      {
+        "name": "omg-ralph-retry",
+        "type": "command",
+        "command": "node ${extensionPath}/hooks/ralph-retry.js",
+        "timeout": 5000,
+        "description": "Persistence mode (Ralph) - automatic retry on failure with circuit breaker awareness"
+      }
+    ]
+  },
+  "configuration": {
+    "phaseGates.enabled": {
+      "description": "Enable Conductor phase gate detection",
+      "type": "boolean",
+      "default": true
+    },
+    "phaseGates.strict": {
+      "description": "[Deprecated] Phase gates are now advisory-only. This setting is ignored.",
+      "type": "boolean",
+      "default": false
+    },
+    "autoVerification.enabled": {
+      "description": "Run typecheck/lint after code changes",
+      "type": "boolean",
+      "default": true
+    },
+    "autoVerification.typecheck": {
+      "description": "Run TypeScript type checking",
+      "type": "boolean",
+      "default": true
+    },
+    "autoVerification.lint": {
+      "description": "Run linting",
+      "type": "boolean",
+      "default": true
+    },
+    "security.gitCheckpoints": {
+      "description": "Create git checkpoints before file modifications",
+      "type": "boolean",
+      "default": true
+    },
+    "toolFilter.enabled": {
+      "description": "Filter tools based on detected agent mode",
+      "type": "boolean",
+      "default": true
+    },
+    "ralph.enabled": {
+      "description": "Enable persistence mode (ralph) for automatic retry",
+      "type": "boolean",
+      "default": true
+    },
+    "ralph.stuckThreshold": {
+      "description": "Consecutive same-error retries before stuck protocol fires",
+      "type": "number",
+      "default": 3
+    },
+    "ralph.suggestedSkill": {
+      "description": "Skill to suggest when Ralph keywords detected",
+      "type": "string",
+      "default": "ralph-mode"
+    },
+    "planMode.enabled": {
+      "description": "Enable plan mode integration (read-only tool restrictions via omg-plan-mode.toml)",
+      "type": "boolean",
+      "default": true
+    },
+    "contextInjection.conductorState": {
+      "description": "Inject active Conductor track info",
+      "type": "boolean",
+      "default": true
+    },
+    "modes.enabled": {
+      "description": "Enable the mode system (research, implement, review, quickfix, plan, eco)",
+      "type": "boolean",
+      "default": true
+    },
+    "modes.default": {
+      "description": "Default primary mode when no keyword is detected",
+      "type": "string",
+      "default": "implement"
+    }
+  }
+}

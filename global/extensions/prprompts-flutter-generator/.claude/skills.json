@@ -1,0 +1,173 @@
+{
+  "name": "PRPROMPTS Flutter Generator Skills",
+  "version": "1.0.0",
+  "description": "Claude skills for AI-powered Flutter development with PRPROMPTS methodology",
+  "author": "PRPROMPTS Team",
+  "categories": {
+    "prprompts-core": {
+      "name": "Core PRPROMPTS",
+      "description": "PRD creation and PRPROMPTS generation skills",
+      "icon": "📝",
+      "skills": [
+        "prd-creator",
+        "prd-analyzer",
+        "prprompts-generator",
+        "phase-generator",
+        "single-file-generator"
+      ]
+    },
+    "automation": {
+      "name": "Automation",
+      "description": "Flutter project automation and implementation skills",
+      "icon": "🤖",
+      "skills": [
+        "flutter-bootstrapper",
+        "feature-implementer",
+        "automation-orchestrator",
+        "code-reviewer",
+        "qa-auditor"
+      ]
+    },
+    "validation": {
+      "name": "Validation",
+      "description": "Code quality and compliance validation skills",
+      "icon": "✅",
+      "skills": [
+        "architecture-validator",
+        "security-validator",
+        "compliance-checker",
+        "test-validator"
+      ]
+    },
+    "utilities": {
+      "name": "Utilities",
+      "description": "Helper utilities and tools",
+      "icon": "🛠️",
+      "skills": [
+        "api-validator",
+        "rate-monitor",
+        "progress-tracker",
+        "state-manager"
+      ]
+    },
+    "development-workflow": {
+      "name": "Development Workflow",
+      "description": "Development environment and workflow configuration skills",
+      "icon": "🎨",
+      "skills": [
+        "flutter-flavors"
+      ]
+    }
+  },
+  "workflows": {
+    "quick-start": {
+      "name": "Quick Start Workflow",
+      "description": "Create PRD and generate PRPROMPTS",
+      "skills": ["prd-creator", "prprompts-generator"]
+    },
+    "full-automation": {
+      "name": "Full Automation Workflow",
+      "description": "Complete PRD to Flutter app automation",
+      "skills": [
+        "prd-creator",
+        "prprompts-generator",
+        "flutter-bootstrapper",
+        "flutter-flavors",
+        "automation-orchestrator",
+        "qa-auditor"
+      ]
+    },
+    "enterprise": {
+      "name": "Enterprise Workflow",
+      "description": "Enterprise-grade development with compliance",
+      "skills": [
+        "prd-creator",
+        "prd-analyzer",
+        "prprompts-generator",
+        "flutter-bootstrapper",
+        "flutter-flavors",
+        "compliance-checker",
+        "security-validator",
+        "feature-implementer",
+        "qa-auditor"
+      ]
+    }
+  },
+  "config": {
+    "autoLoad": true,
+    "cacheDuration": 3600,
+    "defaultTimeout": 300000,
+    "enableProgress": true,
+    "verboseMode": false
+  },
+  "dependencies": {
+    "prprompts-generator": ["prd-analyzer"],
+    "feature-implementer": ["flutter-bootstrapper"],
+    "automation-orchestrator": ["flutter-bootstrapper", "feature-implementer"],
+    "qa-auditor": ["architecture-validator", "security-validator", "test-validator"]
+  },
+  "skillStatus": {
+    "prprompts-core": {
+      "prd-creator": "implemented",
+      "prd-analyzer": "planned",
+      "prprompts-generator": "implemented",
+      "phase-generator": "implemented",
+      "single-file-generator": "implemented"
+    },
+    "automation": {
+      "flutter-bootstrapper": "implemented",
+      "feature-implementer": "implemented",
+      "automation-orchestrator": "implemented",
+      "code-reviewer": "implemented",
+      "qa-auditor": "implemented"
+    },
+    "validation": {
+      "architecture-validator": "planned",
+      "security-validator": "planned",
+      "compliance-checker": "planned",
+      "test-validator": "planned"
+    },
+    "utilities": {
+      "api-validator": "planned",
+      "rate-monitor": "planned",
+      "progress-tracker": "planned",
+      "state-manager": "planned"
+    },
+    "development-workflow": {
+      "flutter-flavors": "implemented"
+    }
+  },
+  "stats": {
+    "totalSkills": 23,
+    "implemented": 10,
+    "planned": 13,
+    "percentComplete": 43.5,
+    "categories": {
+      "prprompts-core": {
+        "total": 5,
+        "implemented": 4,
+        "percentComplete": 80
+      },
+      "automation": {
+        "total": 5,
+        "implemented": 5,
+        "percentComplete": 100
+      },
+      "validation": {
+        "total": 4,
+        "implemented": 0,
+        "percentComplete": 0
+      },
+      "utilities": {
+        "total": 4,
+        "implemented": 0,
+        "percentComplete": 0
+      },
+      "development-workflow": {
+        "total": 1,
+        "implemented": 1,
+        "percentComplete": 100
+      }
+    }
+  }
+}

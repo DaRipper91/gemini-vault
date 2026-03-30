@@ -1,0 +1,142 @@
+prompt = """
+# Clean Up Tasks Directory
+
+## Goal
+To help users manage their `/tasks` directory by identifying and optionally removing old, completed, or abandoned files to maintain an organized workspace.
+
+## Process
+1. **Verify Directory Setup:** Check that the `/tasks` directory exists.
+2. **Analyze Files:** Scan all files in the `/tasks` directory and categorize them:
+   - Completed task lists (100% progress)
+   - In-progress task lists
+   - PRDs without corresponding task lists
+   - Task lists without corresponding PRDs
+   - Old or abandoned files (based on modification date)
+3. **Present Cleanup Options:** Show categorized lists and ask for user confirmation before any deletions.
+
+## Output Format
+
+```
+# Tasks Directory Cleanup
+
+## Analysis Summary
+- Total files: 8
+- Completed features: 2
+- In-progress features: 3
+- Orphaned files: 1
+- Old files (>30 days): 2
+
+## Cleanup Recommendations
+
+### ✅ Completed Features (Safe to Archive)
+These features are 100% complete and can be archived or removed:
+
+1. **0001 - User Authentication** (Completed Oct 8, 2025)
+   - `0001-prd-user-authentication.md`
+   - `tasks-0001-prd-user-authentication.md`
+   - **Action:** Archive to `completed/` subdirectory
+
+2. **0002 - Payment Integration** (Completed Sep 15, 2025)
+   - `0002-prd-payment-integration.md`
+   - `tasks-0002-prd-payment-integration.md`
+   - **Action:** Archive to `completed/` subdirectory
+
+### ⚠️ Orphaned Files
+Files without corresponding counterparts:
+
+1. **0003 - API Documentation**
+   - `0003-prd-api-documentation.md` (No task list found)
+   - **Action:** Generate task list or remove PRD
+
+### 📅 Old Files (>30 days since last modification)
+Files that haven't been touched recently:
+
+1. **0004 - Mobile App** (Last modified: Aug 1, 2025)
+   - `0004-prd-mobile-app.md`
+   - `tasks-0004-prd-mobile-app.md` (0% complete)
+   - **Action:** Continue work or archive as abandoned
+
+## Available Actions
+1. **Archive completed features** to `tasks/completed/` subdirectory
+2. **Generate missing task lists** for orphaned PRDs
+3. **Remove abandoned features** (with confirmation)
+4. **Create archive** of completed work
+5. **Do nothing** (exit cleanup)
+
+**What would you like to do? (Enter number 1-5)**
+```
+
+## Safety Features
+
+### Before Any Deletion
+- Always show exactly what will be affected
+- Require explicit confirmation for each file or category
+- Offer to create backups before deletion
+- Show file sizes and modification dates
+
+### Archive Structure
+When archiving completed features:
+```
+tasks/
+├── completed/
+│   ├── 2025-10/
+│   │   ├── 0001-user-authentication/
+│   │   │   ├── 0001-prd-user-authentication.md
+│   │   │   └── tasks-0001-prd-user-authentication.md
+│   │   └── 0002-payment-integration/
+│   └── 2025-09/
+│       └── 0003-blog-system/
+```
+
+## Interactive Cleanup Process
+
+### Step 1: Review Categories
+- Show files in each category with details
+- Let user choose which categories to process
+- Allow individual file selection within categories
+
+### Step 2: Confirm Actions
+- For each selected action, show exactly what will happen
+- Provide option to modify selections
+- Offer backup creation before proceeding
+
+### Step 3: Execute Cleanup
+- Perform actions one by one with progress updates
+- Verify each operation succeeded
+- Provide summary of what was accomplished
+
+## Error Handling
+- If files cannot be deleted (permissions), provide manual instructions
+- If archive directory creation fails, suggest alternative locations
+- Always verify operations before marking them complete
+- Rollback capability if user requests cancellation mid-process
+
+## Advanced Options
+
+### Smart Cleanup Rules
+- Automatically archive features completed > 7 days ago
+- Flag features with no activity > 30 days as potentially abandoned
+- Identify duplicate or similar feature names for consolidation
+- Suggest merging related features when appropriate
+
+### Custom Actions
+- Move files to custom directories
+- Rename files for better organization
+- Generate summary reports of completed work
+- Export completed tasks for documentation
+
+## Safety Checks
+- Never delete files without explicit user confirmation
+- Always show what will be deleted before proceeding
+- Provide clear undo instructions when possible
+- Maintain a log of cleanup operations
+
+## File Validation
+- Verify file integrity before deletion
+- Check for important content in "abandoned" files
+- Validate archive directory permissions
+- Ensure backup operations complete successfully
+
+**Note:** This command helps maintain an organized workspace but is conservative by default. When in doubt, it will recommend archiving rather than deletion.
+
+"""

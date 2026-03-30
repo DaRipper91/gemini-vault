@@ -1,0 +1,104 @@
+# Project Context
+
+This file provides context to Gemini CLI agents about this project. Keep it accurate and up-to-date.
+
+## Project Overview
+
+**Name:** [Project Name]
+**Description:** [Brief description of what this project does]
+**Status:** [Active development / Maintenance / etc.]
+
+---
+
+## Quick Reference
+
+### Key Commands
+```bash
+# Start development
+[command]
+
+# Run tests
+[command]
+
+# Build for production
+[command]
+```
+
+### Important Directories
+- `src/` - [Description]
+- `tests/` - [Description]
+- `docs/` - [Description]
+
+---
+
+## Tech Stack Summary
+
+- **Language:** [e.g., TypeScript 5.x]
+- **Runtime:** [e.g., Node.js 20.x / Bun 1.x]
+- **Framework:** [e.g., React, Hono, etc.]
+- **Database:** [e.g., PostgreSQL]
+- **Testing:** [e.g., Vitest, Jest]
+
+---
+
+## Coding Conventions
+
+### Style
+- [Key style guideline]
+- [Key style guideline]
+
+### Patterns to Follow
+- [Pattern 1]: [When to use]
+- [Pattern 2]: [When to use]
+
+### Patterns to Avoid
+- [Anti-pattern 1]: [Why to avoid]
+
+---
+
+## oh-my-gemini Configuration
+
+### Active Features
+- [x] Conductor workflow
+- [x] Persistence mode
+- [ ] Parallel execution (waiting for SubAgent)
+
+### Agent Preferences
+- **@researcher**: Check [specific docs] for [topic]
+- **@architect**: Follow [existing pattern] for [type of feature]
+- **@executor**: Run [command] after changes to [area]
+
+### Skills Enabled
+- prd-creation
+- technical-planning
+- implementation
+- code-review
+- documentation
+- persistence
+- git-commit
+- test-generation
+- debug-assistant
+
+---
+
+## Current Focus
+
+### Active Work
+- [Current feature/track being worked on]
+
+### Known Issues
+- [Issue to be aware of]
+
+---
+
+## Magic Keywords
+
+Use these prefixes for specific behaviors:
+- `autopilot:` - Full autonomous execution
+- `ralph:` - Persistence mode (don't give up)
+- `plan:` - Planning interview first
+- `eco:` - Token-efficient mode
+
+---
+
+*This file is read by Gemini CLI agents. Keep it accurate and up-to-date.*

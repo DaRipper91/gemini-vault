@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "name": "cmd-clean-code",
+  "owner": "olshansk",
+  "repo": "agent-skills",
+  "path": ".agents/skills/cmd-clean-code",
+  "branch": "main",
+  "sha": "924e6ee80817202b7a0443d138f691a783ebd603",
+  "source": "manual"
+}

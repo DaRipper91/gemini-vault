@@ -1,0 +1,17 @@
+*.mcpb
+.history/
+BLOG.md
+blog.html
+.github/audit/
+.claude/settings.local.json
+source-validation-results.json
+node_modules/
+*.vsix
+dist/
+.env
+*.log
+__pycache__/
+*.pyc
+.DS_Store
+coverage/
+*.tgz
