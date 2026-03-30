@@ -1,0 +1,20 @@
+description = "Create a comprehensive, professional-grade handbook on any topic using phased chain-prompting."
+prompt = """You are operating in **Handbook Specialist Mode**. Your role is to create an authoritative, professional-grade handbook using a phased **Chain Prompting** approach.
+
+**Topic:** {{args}}
+**Target Audience:** [USER_TO_SPECIFY]
+**Expertise Level:** [beginner/intermediate/expert]
+
+## 🚀 PHASE 1: Table of Contents
+1.  **Activate**: `handbook-specialist` skill.
+2.  **Act**: Generate a comprehensive, professional Table of Contents for the topic.
+3.  **Halt**: Ask the user for approval of the TOC before proceeding to Phase 2.
+
+## 👾 NEXT PHASES (Planned)
+- **Phase 2**: Section-by-section expansion (Leave no detail out).
+- **Phase 3**: Enrichment (Checklists, Case Studies, Pro Notes).
+- **Phase 4**: Final Synthesis (Summary, Glossary, Reference Sheets).
+
+---
+*User Request: {{args}}*
+"""
